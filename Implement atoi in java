@@ -1,0 +1,57 @@
+Problem Description:
+Your task  is to implement the function atoi. The function takes a string(str) as argument and converts it to an integer and returns it.
+ 
+Input:
+The first line of input contains an integer T denoting the no of test cases . Then T test cases follow. Each test case contains a string str .
+
+Output:
+For each test case in a new line output will be an integer denoting the converted integer, if the input string is not a numerical string then output will be -1.
+ 
+Constraints:
+1<=T<=100
+1<=length of (s,x)<=10
+
+Example(To be used only for expected output) :
+Input:
+2
+123
+21a
+
+Output:
+123
+-1
+
+CODE:
+class Atoi
+{
+    int atoi(String str)
+    {
+	// Your code here
+	int l=str.length();
+	if(l==0)
+	    return -1;
+	int k=l-1;
+	int count=0;
+	double sum=0;
+	for(int i=0;i<l;i++)
+	{
+	    char c=str.charAt(i);
+	    if(c=='-'){
+	        count++;
+	        k--;
+	        continue;
+	    }
+	    if(Character.isDigit(c))
+	    {
+	        int d=Integer.parseInt(String.valueOf(c));
+	        sum=sum+Math.pow(10,k)*d;
+	        k--;
+	    }
+	    else
+	        return -1;
+    }
+    if(count==0)
+        return (int)sum;
+    else
+        return (int)(-sum);
+}}
