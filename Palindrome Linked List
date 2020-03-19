@@ -1,0 +1,54 @@
+C code solution.Leetcode problem
+Code:
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     struct ListNode *next;
+ * };
+ */
+
+
+bool isPalindrome(struct ListNode* head){
+    struct ListNode *p=head,*q=head,*h=head;
+    if(head==NULL)
+        return 1;
+    if(head->next==NULL)
+        return true;
+    while(1)
+    {
+        p=p->next->next;
+         if(p==NULL)
+        {
+          h=q->next;
+            break;
+        }
+        if(p->next==NULL)
+        {
+            h=q->next->next;
+            break;
+        }
+         q=q->next;
+    }
+         q->next=NULL;
+    //Reversing the 2nd part of linked list
+    struct ListNode *front=h,*prev=NULL,*cur=h;
+    while(front!=NULL)
+    {
+        front=front->next;
+        cur->next=prev;
+        prev=cur;
+        cur=front;
+    }
+    h=prev;
+    //Checking for palindrome linked list
+    while(h!=NULL && head!=NULL)
+    {
+        if(h->val!=head->val)
+            return false;
+        h=h->next;
+        head=head->next;
+    }
+    return true;
+}
