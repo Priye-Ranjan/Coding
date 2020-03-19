@@ -1,0 +1,74 @@
+Leetcode
+C language
+Code:
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     struct ListNode *next;
+ * };
+ */
+
+
+struct ListNode* mergeTwoLists(struct ListNode* l1, struct ListNode* l2){
+       struct ListNode *fin,*head,*tm,*tm1;
+    if(l1==NULL && l2==NULL)
+        return NULL;
+    if(l1==NULL)
+        return l2;
+    if(l2==NULL)
+        return l1;
+        int count=1;
+        while(l1!=NULL && l2!=NULL)
+        {
+            if(count==1)
+            {
+                tm=(struct ListNode*)malloc(sizeof(struct ListNode));   
+                if(l1->val<=l2->val)
+                {
+                    tm->val=l1->val;
+                    l1=l1->next;
+                }
+                else{
+                    tm->val=l2->val;
+                    l2=l2->next;
+                }
+                fin=tm;
+                head=tm;
+            }
+            tm1=(struct ListNode*)malloc(sizeof(struct ListNode));
+            if(l1==NULL)
+                break;
+            if(l2==NULL)
+                break;
+            if(l1!=NULL && l1->val<=l2->val){
+                tm1->val=l1->val;
+                l1=l1->next;}
+            else if(l2!=NULL && l1->val>=l2->val)
+            {
+                tm1->val=l2->val;
+                l2=l2->next;
+            }
+                fin->next=tm1;
+            count++;
+            fin=tm1;
+        }
+    while(l2!=NULL)
+    {
+         tm1=(struct ListNode*)malloc(sizeof(struct ListNode));
+            fin->next=tm1;
+            tm1->val=l2->val;
+            fin=tm1;
+        l2=l2->next;
+    }
+    while(l1!=NULL)
+    {
+         tm1=(struct ListNode*)malloc(sizeof(struct ListNode));
+            fin->next=tm1;
+            tm1->val=l1->val;
+            fin=tm1;
+        l1=l1->next;
+    }
+    fin->next=NULL;
+    return head;
+}
