@@ -1,0 +1,25 @@
+class Solution {
+    public String[] findRestaurant(String[] list1,String[] list2) {
+        int min=9999;
+        List<String> l=new ArrayList<>();
+        for(int i=0;i<list1.length;i++)
+        {
+            int lmin=0;
+            for(int j=0;j<list2.length;j++)
+            {
+                if(list1[i].equalsIgnoreCase(list2[j]))
+                {
+                    lmin=j+i;
+                    if(lmin<=min)
+                    {
+                        min=lmin;
+                        l.add(list1[i]);
+                    }
+                }
+            }
+        }
+        String []p=new String[l.size()];
+        for(int i=0;i<l.size();i++)
+            p[i]=l.get(i);
+        return p;
+}}
