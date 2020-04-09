@@ -10,8 +10,6 @@
 class Solution {
     public List<Integer> inorderTraversal(TreeNode root) {
        List<Integer> ob=new ArrayList<>();
-        if(root==null)
-            return ob;
        inorder(root,ob);
         return ob;
     }
