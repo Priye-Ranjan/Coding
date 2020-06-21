@@ -1,0 +1,60 @@
+/*package whatever //do not write package name here */
+//TC:O(n)
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class GFG {
+	public static void main (String[] args) {
+		//code
+		Scanner sc=new Scanner(System.in);
+		int t=sc.nextInt();
+		while(t-->0)
+		{
+		    int l=sc.nextInt();
+		    int a[]=new int[l];
+		    for(int i=0;i<l;i++)
+		    {
+		        a[i]=sc.nextInt();
+		    }
+		    int x=sc.nextInt();
+		    int y=sc.nextInt();
+		    int m=0,n=0;
+		    for(int i=0;i<l;i++)
+		    {
+		        if(a[i]==y)
+		        {
+		            m=n=i;
+		        }
+		    }
+		    ArrayList<Integer> b=new ArrayList<>();
+		    for(int i=0;i<x/2;i++)
+		    {
+		        if(n!=l-1 && m!=0)
+		        {
+		            b.add(a[++n]);
+		            b.add(a[--m]);
+		        }
+		        else if(n==l-1)
+		        {
+		            b.add(a[--m]);
+		            b.add(a[--m]);
+		        }
+		        else if(m==0)
+		        {
+		            b.add(a[++n]);
+		            b.add(a[++n]);
+		        }
+		    }
+		    
+		    Collections.sort(b);
+		    
+		    for(Integer i:b)
+		    {
+		        System.out.print(i+" ");
+		    }
+		      System.out.println();
+		    
+		}
+	}
+}
